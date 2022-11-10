@@ -116,7 +116,8 @@
 					
 				</div>
 				<div class="hireme_form2">
-					<form action="https://formsubmit.co/thaonguyendeutsch@gmail.com" method="POST">
+					<form onsubmit="sendEmail(); reset(); return false;">
+
 						<fieldset id="form">
 							 <legend><strong>Contact Me</strong></legend>
 							<p><label for="name">Your Name:</label>
@@ -149,5 +150,22 @@
 	<footer>
 		Created by Thao Nguyen - <a href="mailto:nttp.thao1995@gmail.com">Email me</a>
 	</footer>
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script>
+		function sendEmail(){
+			Email.send({
+				Host : "smtp.elasticemail.com",
+				Username : "thaocoding@gmail.com",
+				Password : "12345",
+				To : "thaonguyendeutsch@gmail.com",
+				From : document.getElementById("email").value,
+				Subject : "New Contact Form Enquiry",
+				Body : "Name: " + document.getElementById("name").value 
+						    + "br/ Email: " + document.getElementById("email").value,
+			}).then(
+				message => alert(message)
+			);
+		}
+	</script>
 </body>
 </html>
